@@ -6,30 +6,51 @@ import (
 	"fmt"
 )
 
-//import "fmt"
-
-type ConfigMysql struct {
-		Host string
-		Port int32
-		User string
-		Pass string
+type ConfigJson struct {
+	Mysql_host string //mysql host
+	Mysql_port string
+	Mysql_user string
+	Mysql_pass string
+	Mysql_dbname string
 }
 
-//var conf = ConfigMysql{Host:"host",Port:3306,User:"root",Pass:"123456"}
-func LoadConfig()  {
+var Config = &ConfigJson{}
 
-
-	file,_ := os.Open("crontab/config/config.json")
+func LoadConfig(path string) error {
+	file,_ := os.Open(path + "/crontab/config.json")
 	defer file.Close()
-	conf := ConfigMysql{}
 	decoder := json.NewDecoder(file)
-
-	err := decoder.Decode(&conf)
+	err := decoder.Decode(&Config)
 	if err != nil {
-		fmt.Println("读取json文件读取不要")
+		fmt.Println("读取json文件失败")
 	}
-	fmt.Println(conf.Host)
+	return err
 }
-func init()  {
 
+//func Get() map[string]string  {
+//	currentPath, _ := os.Getwd()
+//	file,_ := os.Open(currentPath +"/crontab/config.json")
+//	defer file.Close()
+//	conf := new(ConfigMysql)
+//	decoder := json.NewDecoder(file)
+//	err := decoder.Decode(&conf)
+//	if err != nil {
+//		//return err
+//		fmt.Println("读取json文件读取不要")
+//
+//	}
+//	//fmt.Println(conf.Host)
+//	return conf
+//}
+func init()  {
+	//currentPath, _ := os.Getwd()
+	//file,_ := os.Open(currentPath + "/crontab/config/config.json")
+	//defer file.Close()
+	//conf := new(ConfigMysql)
+	//decoder := json.NewDecoder(file)
+	//err := decoder.Decode(&conf)
+	//if err != nil {
+	//	fmt.Println("读取json文件读取不要")
+	//}
+	//fmt.Println(conf)
 }

@@ -1,0 +1,7 @@
+{
+  "Mysql_host": "localhost",
+  "Mysql_port": "3306",
+  "Mysql_user": "root",
+  "Mysql_pass": "Aa123456",
+  "Mysql_dbname" : "test"
+}
